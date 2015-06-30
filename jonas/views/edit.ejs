@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Editar Articulo</h1>
+    <form method="post" action="/editar" >
+        <input type="text" name="id" value="<%= id %>" />
+        producto: <input type="text" name="product" value="<%= producto %>" />
+        precio: <input type="text" name="price" value="<%= precio %>" />
+        <input type="submit" value="guardar" />
+    </form>
+  </body>
+</html>

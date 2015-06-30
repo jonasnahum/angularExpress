@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Todos los Articulos</h1>
+    <ul>
+      <% articulos.forEach(function(articulo) { %>
+        <li>
+            <% include articuloPartial %>
+        </li>
+      <% }) %>
+    </ul>
+    <a href="/nuevo">nuevo</a>
+  </body>
+</html>
