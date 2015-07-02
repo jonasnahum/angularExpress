@@ -5,11 +5,11 @@ sampleApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/AddNewOrder', {
-        templateUrl: '/home/jonas/Documents/github/angularExpress/jonas/js/templates/add_order',
+        templateUrl: "/js/templates/add_order.ejs",
         controller: 'AddOrderController'
     }).
       when('/ShowOrders', {
-        templateUrl: __dirname + '/templates/show_orders.ejs',
+        templateUrl: "/js/templates/show_orders.ejs",
         controller: 'ShowOrdersController'
       }).
       otherwise({
