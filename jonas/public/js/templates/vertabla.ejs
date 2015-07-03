@@ -11,13 +11,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{{ message }}</td>
-            <td>{{ message }}</td>
+          <tr ng-repeat="empleado in empleados">
+            <td>{{ empleado.name }}</td>
+            <td>{{ empleado.age }}</td>
           </tr>
         </tbody>
       </table>
     </div>
 </div>
 
-<!--dentro del tr ng-repeat="articulo in articulos"-->
+<!--dentro del tr -->

@@ -31,10 +31,12 @@ router.get('/articulos', function(req, res, next) {
     var Articulo = mongoose.model('Articulo');//for articulos collection in the database. 
     
     Articulo.find(function (err, articulos) {//recibe un array.
-        if (err) return next(err);
-        res.render('all', { articulos: articulos });
+        if (err) 
+            return next(err);
+        res.send(articulos);
     }); 
 });
+
 router.get('/nuevo', function(req, res, next) {
     res.render('new');
 });
