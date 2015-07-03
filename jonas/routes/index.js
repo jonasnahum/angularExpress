@@ -11,9 +11,9 @@ db.once('open', function (callback) {
 });
 
 router.get('/', function(req, res, next) {
-   var Articulo = mongoose.model('Articulo');//for articulos collection in the database. 
+   var Articulo = mongoose.model('Articulo'); 
     
-    Articulo.find(function (err, articulos) {//recibe un array.
+    Articulo.find(function (err, articulos) {
         if (err) 
             return next(err);
         res.locals.articulos = articulos;
@@ -21,16 +21,10 @@ router.get('/', function(req, res, next) {
     }); 
 });
 
-
-/* GET home page. */
-//router.get('/', function(req, res, next) {
-//  res.render('index', { title: 'Tienda' });
-//});
-
 router.get('/articulos', function(req, res, next) { 
-    var Articulo = mongoose.model('Articulo');//for articulos collection in the database. 
+    var Articulo = mongoose.model('Articulo'); 
     
-    Articulo.find(function (err, articulos) {//recibe un array.
+    Articulo.find(function (err, articulos) {
         if (err) 
             return next(err);
         res.send(articulos);
@@ -56,7 +50,7 @@ router.get('/editar/:id', function(req, res, next) {
     
     Articulo.findById(req.params.id, function (err, articulo) {
         if (err) return next(err);
-        res.render('edit', { id: articulo.id, producto: articulo.producto, precio:                 articulo.precio });
+        res.send({id: articulo.id, producto: articulo.producto, precio:                 articulo.precio});
     });
 });
 router.post('/editar', function(req, res, next) {

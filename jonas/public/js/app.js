@@ -1,4 +1,5 @@
 var sampleApp = angular.module('sampleApp', []);
+
 sampleApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -10,29 +11,35 @@ sampleApp.config(['$routeProvider',
         templateUrl: "/js/templates/nover.ejs",
         controller: 'noverController'
       }).
+//      when('/editar/:id', {
+//        templateUrl: "/js/templates/editar.ejs",
+//        controller: 'editarController'
+//      }).
       otherwise({
         redirectTo: '/vertabla'
       });
 }]);
  
-
-
-
-
-
-sampleApp.controller('vertablaController', function($scope) {
-    var empleados=[
-                    {name:"George", age:32, retiredate:"March 12, 2014"},
-                    {name:"Edward", age:17, retiredate:"June 2, 2023"},
-                    {name:"Christine", age:58, retiredate:"December 20, 2036"},
-                    {name:"Sarah", age:62, retiredate:"April 30, 2020"}
-                  ];
-    $scope.empleados = empleados;  
+sampleApp.controller('vertablaController', 
+function($scope, $http) {
+    $http.get("http://localhost:3000/articulos")
+    .success(function(response) {
+        $scope.articulos = response;
+    });
 });
  
+sampleApp.controller('noverController', 
+function($scope, $routeParams) {
  
-sampleApp.controller('noverController', function($scope) {
- 
-    $scope.message = 'mensaje enviado desde noverController a template.';
+    $scope.message = 'mensaje enviado desde noverController a template';
  
 });
+//sampleApp.controller('editarController', 
+//function($scope, $http, $routeParams) {
+//    $http.get("http://localhost:3000/editar/" + $routeParams.id);
+//    .success(function(response) {
+//        $scope.articuloParaCambiar = response;
+//    });
+//});
+ 
+
