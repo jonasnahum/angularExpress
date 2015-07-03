@@ -3,18 +3,30 @@ var router = express.Router();
 var articulosFactory = require('../models/articulo');
 var dbname = 'mongodb://localhost/articulos';
 var mongoose = require('mongoose'); 
-mongoose.connect(dbname);        
-var db = mongoose.connection;
+mongoose.connect(dbname);
 
+var db = mongoose.connection;
 db.once('open', function (callback) {
     console.log("la conexion esta abierta en articulos..");
 });
 
+router.get('/', function(req, res, next) {
+   var Articulo = mongoose.model('Articulo');//for articulos collection in the database. 
+    
+    Articulo.find(function (err, articulos) {//recibe un array.
+        if (err) 
+            return next(err);
+        res.locals.articulos = articulos;
+        res.render("layout");
+    }); 
+});
+
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Tienda' });
-});
+//router.get('/', function(req, res, next) {
+//  res.render('index', { title: 'Tienda' });
+//});
+
 router.get('/articulos', function(req, res, next) { 
     var Articulo = mongoose.model('Articulo');//for articulos collection in the database. 
     
@@ -79,8 +91,6 @@ router.get('/ver/:id', function(req, res, next) {
         res.render('view', { articulo: articulo });
     });
 });
-
-
 
 
 

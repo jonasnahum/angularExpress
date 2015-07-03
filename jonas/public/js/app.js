@@ -1,32 +1,32 @@
 var sampleApp = angular.module('sampleApp', []);
- 
-
 sampleApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/AddNewOrder', {
-        templateUrl: "/js/templates/add_order.ejs",
-        controller: 'AddOrderController'
+      when('/vertabla', {
+        templateUrl: "/js/templates/vertabla.ejs",
+        controller: 'vertablaController'
     }).
-      when('/ShowOrders', {
-        templateUrl: "/js/templates/show_orders.ejs",
-        controller: 'ShowOrdersController'
+      when('/nover', {
+        templateUrl: "/js/templates/nover.ejs",
+        controller: 'noverController'
       }).
       otherwise({
-        redirectTo: '/AddNewOrder'
+        redirectTo: '/vertabla'
       });
 }]);
  
- 
-sampleApp.controller('AddOrderController', function($scope) {
-     
-    $scope.message = 'This is Add new order screen';
-     
+
+
+
+
+
+sampleApp.controller('vertablaController', function($scope) {
+    $scope.message = 'mensaje enviado desde vertablaController a template.';  
 });
  
  
-sampleApp.controller('ShowOrdersController', function($scope) {
+sampleApp.controller('noverController', function($scope) {
  
-    $scope.message = 'This is Show orders screen';
+    $scope.message = 'mensaje enviado desde noverController a template.';
  
 });
