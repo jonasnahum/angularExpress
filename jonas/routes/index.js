@@ -42,7 +42,7 @@ router.post('/nuevo', function(req, res, next) {
     
     articulo.save(function (err, data) {//alumno hecho new Alumno y schema en models.
         if (err) return next(err);
-        res.redirect('/articulos');
+        res.redirect('/');
     });            
 });
 router.get('/editar/:id', function(req, res, next) {

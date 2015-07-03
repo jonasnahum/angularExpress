@@ -11,10 +11,14 @@ sampleApp.config(['$routeProvider',
         templateUrl: "/js/templates/nover.ejs",
         controller: 'noverController'
       }).
-//      when('/editar/:id', {
-//        templateUrl: "/js/templates/editar.ejs",
-//        controller: 'editarController'
-//      }).
+      when('/nuevo', {
+        templateUrl: "/js/templates/nuevo.ejs",
+        controller: 'nuevoController'
+      }).
+      when('/editar/:id', {
+        templateUrl: "/js/templates/editar.ejs",
+        controller: 'editarController'
+      }).
       otherwise({
         redirectTo: '/vertabla'
       });
@@ -29,17 +33,22 @@ function($scope, $http) {
 });
  
 sampleApp.controller('noverController', 
-function($scope, $routeParams) {
+function($scope) {
  
     $scope.message = 'mensaje enviado desde noverController a template';
  
 });
-//sampleApp.controller('editarController', 
-//function($scope, $http, $routeParams) {
-//    $http.get("http://localhost:3000/editar/" + $routeParams.id);
-//    .success(function(response) {
-//        $scope.articuloParaCambiar = response;
-//    });
-//});
+sampleApp.controller('nuevoController', 
+function($scope) {
+    $scope.message = 'mensaje enviado desde nuevo controller';
+});
+sampleApp.controller('editarController', 
+function($scope, $routeParams  ) {
+    $scope.params = $routeParams;
+});
+
+
+
+
  
 
