@@ -50,7 +50,7 @@ router.get('/editar/:id', function(req, res, next) {
     
     Articulo.findById(req.params.id, function (err, articulo) {
         if (err) return next(err);
-        res.send({id: articulo.id, producto: articulo.producto, precio:                 articulo.precio});
+        res.send(articulo);
     });
 });
 router.post('/editar', function(req, res, next) {
