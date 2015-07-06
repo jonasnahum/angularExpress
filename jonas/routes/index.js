@@ -31,18 +31,15 @@ router.get('/articulos', function(req, res, next) {
     }); 
 });
 
-router.get('/nuevo', function(req, res, next) {
-    res.render('new');
-});
 router.post('/nuevo', function(req, res, next) {
-    var articulo = articulosFactory({//alumnos regresa una instancia si le pasas config.
-        producto: req.body.product, 
-        precio: parseInt(req.body.price, 10) 
+    var articulo = articulosFactory({
+        producto: req.body.producto, 
+        precio: parseInt(req.body.precio, 10) 
     });    
     
-    articulo.save(function (err, data) {//alumno hecho new Alumno y schema en models.
+    articulo.save(function (err, data) {
         if (err) return next(err);
-        res.redirect('/');
+        res.json({success: true});
     });            
 });
 router.get('/editar/:id', function(req, res, next) {
@@ -55,16 +52,15 @@ router.get('/editar/:id', function(req, res, next) {
 });
 router.post('/editar', function(req, res, next) {
     var Articulo = mongoose.model('Articulo');
-    
     Articulo.findById(req.body.id, function (err, articulo) {
         if (err) return next(err);
 
-        articulo.producto = req.body.product;
-        articulo.precio = parseInt(req.body.price, 10);  
+        articulo.producto = req.body.producto;
+        articulo.precio = parseInt(req.body.precio, 10);  
         
         articulo.save(function (err, data) {
             if (err) return next(err);
-            res.redirect('/articulos');
+            res.json({success: true});
         }); 
     });   
 });

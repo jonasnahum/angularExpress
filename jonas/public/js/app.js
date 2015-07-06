@@ -39,12 +39,40 @@ function($scope) {
  
 });
 sampleApp.controller('nuevoController', 
-function($scope) {
-    $scope.message = 'mensaje enviado desde nuevo controller';
+function($scope, $http, $location) {
+    $scope.body = {
+        producto: "",
+        precio: ""
+    };
+    $scope.guardar = function() {
+        $http.post("http://localhost:3000/nuevo",  $scope.body)
+             .success(function() { 
+                $location.path('/');
+            });
+    }; 
 });
+
+
 sampleApp.controller('editarController', 
-function($scope, $routeParams  ) {
-    $scope.params = $routeParams;
+function($scope, $http, $routeParams, $window, $location) {
+    $http.get("http://localhost:3000/editar/" + $routeParams.id)
+    .success(function(response) {
+        $scope.params = response; 
+    });
+    
+    $scope.body = {
+        id: "",
+        producto: "",
+        precio: ""
+      };
+
+    $scope.guardar = function() {
+        //$window.alert(JSON.stringify($scope.body));
+         $http.post("http://localhost:3000/editar",  $scope.body)
+         .success(function() { 
+            $location.path('/');
+        }); 
+    };
 });
 
 

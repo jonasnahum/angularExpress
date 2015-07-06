@@ -1,2 +1,23 @@
-<h2>el parametro que se envio a través de la url es..</h2>
+<html>
+  <head>
+    <title>Edit</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Editar Articulo</h1>
+     <form novalidate>
+         Id :
+        <input type="text" name="id"  ng-model="body.id" >{{ params._id }}<br>
+         Producto :
+        <input type="text" name="producto" ng-model="body.producto">{{                params.producto }}<br>
+         Precio : 
+        <input type="text" name="precio" ng-model="body.precio">{{ params.precio }}<br>
+        <button ng-click="guardar()">Guardar Cambios</button>
+      </form>
+  </body>
+</html>
 {{ params }}
+<br>
+<br>
+{{ body }}
+
