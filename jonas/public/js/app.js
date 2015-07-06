@@ -19,6 +19,14 @@ sampleApp.config(['$routeProvider',
         templateUrl: "/js/templates/editar.ejs",
         controller: 'editarController'
       }).
+      when('/ver/:id', {
+        templateUrl: "/js/templates/ver.ejs",
+        controller: 'verController'
+      }).
+      when('/borrar/:id', {
+        templateUrl: "/js/templates/borrar.ejs",
+        controller: 'borrarController'
+      }).
       otherwise({
         redirectTo: '/vertabla'
       });
@@ -75,6 +83,25 @@ function($scope, $http, $routeParams, $window, $location) {
     };
 });
 
+sampleApp.controller('verController', 
+function($scope, $http, $routeParams, $location) {
+    $http.get("http://localhost:3000/ver/" + $routeParams.id)
+    .success(function(response) {
+        $scope.params = response; 
+    });
+    
+    $scope.tabla = function() {
+            $location.path('/');
+    };
+});
+
+sampleApp.controller('borrarController', 
+function($http, $routeParams, $location) {
+    $http.get("http://localhost:3000/borrar/" + $routeParams.id)
+    .success(function(response) {
+         $location.path('/'); 
+    });
+});
 
 
 

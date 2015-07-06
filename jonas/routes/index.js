@@ -65,25 +65,23 @@ router.post('/editar', function(req, res, next) {
     });   
 });
 
-router.get('/borrar/:id', function(req, res, next) {
-    var Articulo = mongoose.model('Articulo');
-    
-    Articulo.remove({ _id: req.params.id }, function (err) {
-        if (err) return next(err);
-        
-        res.redirect('/articulos');
-    });
-});
-
 router.get('/ver/:id', function(req, res, next) {
     var Articulo = mongoose.model('Articulo');
     
     Articulo.findById(req.params.id, function (err, articulo) {
         if (err) return next(err);
-        res.render('view', { articulo: articulo });
+        res.send(articulo);
     });
 });
 
+router.get('/borrar/:id', function(req, res, next) {
+    var Articulo = mongoose.model('Articulo');
+    
+    Articulo.remove({ _id: req.params.id }, function (err) {
+        if (err) return next(err);
+        res.json({success: true});
+    });
+});
 
 
 
